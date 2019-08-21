@@ -341,13 +341,13 @@ EMAIL_SERVICE_PROVIDER_GAE = 'gae_email_service'
 # To use mailgun email service.
 EMAIL_SERVICE_PROVIDER_MAILGUN = 'mailgun_email_service'
 # Use GAE email service by default.
-EMAIL_SERVICE_PROVIDER = EMAIL_SERVICE_PROVIDER_GAE
+EMAIL_SERVICE_PROVIDER = EMAIL_SERVICE_PROVIDER_MAILGUN
 # If the Mailgun email API is used, the "None" below should be replaced
 # with the Mailgun API key.
-MAILGUN_API_KEY = None
+MAILGUN_API_KEY = '2ae2c6f3-d4bfe50e'
 # If the Mailgun email API is used, the "None" below should be replaced
 # with the Mailgun domain name (ending with mailgun.org).
-MAILGUN_DOMAIN_NAME = None
+MAILGUN_DOMAIN_NAME = 'sandboxa7116139449041f5b01374c9a74df434.mailgun.org'
 
 # Committer id for system actions.
 SYSTEM_COMMITTER_ID = 'admin'
@@ -355,7 +355,7 @@ SYSTEM_COMMITTER_ID = 'admin'
 INCOMING_EMAILS_DOMAIN_NAME = 'example.com'
 SYSTEM_EMAIL_ADDRESS = 'system@example.com'
 SYSTEM_EMAIL_NAME = '.'
-ADMIN_EMAIL_ADDRESS = 'testadmin@example.com'
+ADMIN_EMAIL_ADDRESS = 'anilseyrek@gmail.com'
 NOREPLY_EMAIL_ADDRESS = 'noreply@example.com'
 # Ensure that SYSTEM_EMAIL_ADDRESS and ADMIN_EMAIL_ADDRESS are both valid and
 # correspond to owners of the app before setting this to True. If
