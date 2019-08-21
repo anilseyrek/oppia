@@ -147,7 +147,7 @@ def ensure_release_scripts_folder_exists_and_is_up_to_date():
                 'git', 'clone',
                 'git@github.com:oppia/release-scripts.git'])
 
-    with CD(release_scripts_dirpath):
+    #with CD(release_scripts_dirpath):
         #verify_local_repo_is_clean()
         #verify_current_branch_name('master')
 
