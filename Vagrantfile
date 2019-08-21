@@ -21,18 +21,41 @@ bash ./scripts/install_prerequisites.sh
 bash ./scripts/start.sh
 SCRIPT
 
-Vagrant.configure(2) do |config|
-  config.vm.provider "virtualbox" do |v|
-    v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
-    v.memory = 2048
-  end
+#Vagrant.configure(2) do |config|
+#  config.vm.provider "virtualbox" do |v|
+#    v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
+#    v.memory = 2048
+#  end
 
-  config.vm.provision "shell", inline: $env_script
+#  config.vm.provision "shell", inline: $env_script
   # Tell apt to default to "yes" when installing packages. Necessary for unattended installs.
-  config.vm.provision "shell", inline: 'echo \'APT::Get::Assume-Yes "true";\' > /etc/apt/apt.conf.d/90yes'
-  config.vm.network "forwarded_port", guest: 8000, host: 8000, host_ip: "127.0.0.1"
-  config.vm.network "forwarded_port", guest: 8181, host: 8181, host_ip: "127.0.0.1"
-  config.vm.box = "ubuntu/trusty64"
+#  config.vm.provision "shell", inline: 'echo \'APT::Get::Assume-Yes "true";\' > /etc/apt/apt.conf.d/90yes'
+#  config.vm.network "forwarded_port", guest: 8000, host: 8000, host_ip: "127.0.0.1"
+#  config.vm.network "forwarded_port", guest: 8181, host: 8181, host_ip: "127.0.0.1"
+#  config.vm.box = "ubuntu/trusty64"
+#  config.vm.synced_folder ".", "/home/vagrant/oppia"
+#  config.vm.provision "shell", inline: $script
+#end
+Vagrant.configure("2") do |config|
+  config.vm.box = "gcetest"
   config.vm.synced_folder ".", "/home/vagrant/oppia"
   config.vm.provision "shell", inline: $script
+  config.vm.provider :google do |google, override|
+    google.google_project_id = "blocklearnoppia"
+    google.google_client_email = "533920411504-compute@developer.gserviceaccount.com"
+    google.google_json_key_location = "~/Documents/BlockLearnOppia-e6ec48d448ef.json"
+    # Define the name of the instance.
+    google.name = "production"
+    # Set the zone where the instance will be located. To find out available zones:
+    # `gcloud compute zones list`.
+    google.zone = "europe-west4-b"
+    # Set the machine type to use. To find out available types:
+    # `gcloud compute machine-types list --zone europe-west4-b`.
+    google.machine_type = "n1-standard-2"
+    # Set the machine image to use. To find out available images:
+    # `$ gcloud compute images list`.
+    google.image = "ubuntu-1804-bionic-v20190813a"
+    override.ssh.username = "anilseyrek"
+    override.ssh.private_key_path = "~/.ssh/id_rsa"
+  end
 end
