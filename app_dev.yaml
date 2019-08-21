@@ -4,7 +4,7 @@ threadsafe: false
 instance_class: F2
 # The "version" line is added here so that MR jobs can run locally (see issue
 # #6534 on oppia/oppia).
-version: default
+#version: default
 
 builtins:
 - appstats: on
@@ -137,7 +137,7 @@ handlers:
   login: admin
   script: main_mail.app
   secure: always
-  
+
 # STATIC PAGES.
 - url: /about
   static_files: core/templates/dev/head/dist/about-page.mainpage.html
