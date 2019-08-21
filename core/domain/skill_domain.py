@@ -238,69 +238,6 @@ class Misconception(object):
                 self.feedback)
 
 
-class Rubric(object):
-    """Domain object describing a skill rubric."""
-
-    def __init__(self, difficulty, explanation):
-        """Initializes a Rubric domain object.
-
-        Args:
-            difficulty: str. The question difficulty that this rubric addresses.
-            explanation: str. The explanation for the corresponding difficulty.
-        """
-        self.difficulty = difficulty
-        self.explanation = html_cleaner.clean(explanation)
-
-    def to_dict(self):
-        """Returns a dict representing this Rubric domain object.
-
-        Returns:
-            A dict, mapping all fields of Rubric instance.
-        """
-        return {
-            'difficulty': self.difficulty,
-            'explanation': self.explanation
-        }
-
-    @classmethod
-    def from_dict(cls, rubric_dict):
-        """Returns a Rubric domain object from a dict.
-
-        Args:
-            rubric_dict: dict. The dict representation of Rubric object.
-
-        Returns:
-            Rubric. The corresponding Rubric domain object.
-        """
-        rubric = cls(
-            rubric_dict['difficulty'], rubric_dict['explanation'])
-
-        return rubric
-
-    def validate(self):
-        """Validates various properties of the Rubric object.
-
-        Raises:
-            ValidationError: One or more attributes of the rubric are
-                invalid.
-        """
-        if not isinstance(self.difficulty, basestring):
-            raise utils.ValidationError(
-                'Expected difficulty to be a string, received %s' %
-                self.difficulty)
-        if self.difficulty not in constants.SKILL_DIFFICULTIES:
-            raise utils.ValidationError(
-                'Invalid difficulty received for rubric: %s' % self.difficulty)
-
-        if not isinstance(self.explanation, basestring):
-            raise utils.ValidationError(
-                'Expected explanation to be a string, received %s' %
-                self.explanation)
-
-        if self.explanation == '' or self.explanation == '<p></p>':
-            raise utils.ValidationError('Explanation should be non empty')
-
-
 class SkillContents(object):
     """Domain object representing the skill_contents dict."""
 
