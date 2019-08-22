@@ -72,13 +72,16 @@ def deploy_application(app_yaml_path, app_name, promote_name=None, version=None)
         app_yaml_path: str. The path to the app.yaml file.
         app_name: str. The name of the GCloud project.
         version: str or None. If provided, the version to use.
+        promote_name: str or None. If provided, the url to make this service available from
     """
     args = [
         GCLOUD_PATH, '--quiet', 'app', 'deploy', app_yaml_path,
-        '--no-promote', '--no-stop-previous-version',
+        '--no-stop-previous-version',
         '--project=%s' % app_name]
     if version is not None:
         args.append('--version=%s' % version)
     if promote_name is not None:
         args.append('--promote=%s' % promote_name)
+    else:
+        args.append('--no-promote')
     subprocess.check_output(args)
