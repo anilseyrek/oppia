@@ -65,7 +65,7 @@ def get_currently_served_version(app_name):
     return listed_versions[:listed_versions.index(' ')]
 
 
-def deploy_application(app_yaml_path, app_name, version=None):
+def deploy_application(app_yaml_path, app_name, promote_name=None, version=None):
     """Deploys the service corresponding to the given app.yaml path to GAE.
 
     Args:
@@ -79,4 +79,6 @@ def deploy_application(app_yaml_path, app_name, version=None):
         '--project=%s' % app_name]
     if version is not None:
         args.append('--version=%s' % version)
+    if promote_name is not None:
+        args.append('--promote=%s' % promote_name)
     subprocess.check_output(args)

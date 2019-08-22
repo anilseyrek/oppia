@@ -56,6 +56,8 @@ _PARSER.add_argument(
     '--app_name', help='name of the app to deploy to', type=str)
 _PARSER.add_argument(
     '--version', help='version to deploy', type=str)
+_PARSER.add_argument(
+    '--promote', help='url to make this service available from', type=str)
 
 APP_NAME_OPPIASERVER = 'blocklearnoppia'
 APP_NAME_OPPIATESTSERVER = 'oppiatestserver'
@@ -70,6 +72,8 @@ if PARSED_ARGS.app_name:
         raise Exception('Invalid app name: %s' % APP_NAME)
     if PARSED_ARGS.version and APP_NAME == APP_NAME_OPPIASERVER:
         raise Exception('Cannot use custom version with production app.')
+    # Note that PROMOTE_NAME may be None.
+    PROMOTE_NAME = PARSED_ARGS.promote
     # Note that CUSTOM_VERSION may be None.
     CUSTOM_VERSION = PARSED_ARGS.version
 else:
@@ -252,10 +256,10 @@ def _execute_deployment():
             raise Exception('Build failed.')
 
         # Deploy export service to GAE.
-        gcloud_adapter.deploy_application('export/app.yaml', APP_NAME)
+        gcloud_adapter.deploy_application('export/app.yaml', APP_NAME, PROMOTE_NAME)
         # Deploy app to GAE.
         gcloud_adapter.deploy_application(
-            './app.yaml', APP_NAME, version=(
+            './app.yaml', APP_NAME, PROMOTE_NAME, version=(
                 CUSTOM_VERSION if CUSTOM_VERSION else current_release_version))
 
         # Writing log entry.
