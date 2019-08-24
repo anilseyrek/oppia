@@ -30,7 +30,7 @@ from google.appengine.api import app_identity
 from google.appengine.api import urlfetch
 import webapp2
 
-APP_NAME_OPPIASERVER = 'oppiaserver'
+APP_NAME_OPPIASERVER = 'blocklearnoppia'
 
 
 class ExportToCloudDatastoreHandler(webapp2.RequestHandler):

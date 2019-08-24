@@ -130,7 +130,7 @@ angular.module('oppia').config([
             // while the response is pending, This should not be considered
             // an error.
             if (rejection.status !== -1) {
-              $log.error(rejection.data + "denemeee");
+              $log.error(rejection.data);
 
               var warningMessage = 'Error communicating with server.';
               if (rejection.data && rejection.data.error) {
