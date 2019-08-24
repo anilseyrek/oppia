@@ -355,7 +355,7 @@ SYSTEM_COMMITTER_ID = 'admin'
 INCOMING_EMAILS_DOMAIN_NAME = 'example.com'
 SYSTEM_EMAIL_ADDRESS = 'system@example.com'
 SYSTEM_EMAIL_NAME = '.'
-ADMIN_EMAIL_ADDRESS = 'testadmin@example.com'
+ADMIN_EMAIL_ADDRESS = 'anilseyrek@gmail.com'
 NOREPLY_EMAIL_ADDRESS = 'noreply@example.com'
 # Ensure that SYSTEM_EMAIL_ADDRESS and ADMIN_EMAIL_ADDRESS are both valid and
 # correspond to owners of the app before setting this to True. If
