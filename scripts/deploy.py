@@ -57,7 +57,7 @@ _PARSER.add_argument(
 _PARSER.add_argument(
     '--version', help='version to deploy', type=str)
 
-APP_NAME_OPPIASERVER = 'oppiaserver'
+APP_NAME_OPPIASERVER = 'bl-oppia'
 APP_NAME_OPPIATESTSERVER = 'oppiatestserver'
 BUCKET_NAME_SUFFIX = '-resources'
 
