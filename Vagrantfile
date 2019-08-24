@@ -41,7 +41,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder ".", "/home/vagrant/oppia"
   config.vm.provision "shell", inline: $script
   config.vm.provider :google do |google, override|
-    google.google_project_id = "blocklearnoppia"
+    google.google_project_id = "bl-oppia"
     google.google_client_email = "533920411504-compute@developer.gserviceaccount.com"
     google.google_json_key_location = "~/Documents/BlockLearnOppia-e6ec48d448ef.json"
     # Define the name of the instance.

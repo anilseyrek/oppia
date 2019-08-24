@@ -59,7 +59,7 @@ _PARSER.add_argument(
 _PARSER.add_argument(
     '--promote', help='url to make this service available from', type=str)
 
-APP_NAME_OPPIASERVER = 'blocklearnoppia'
+APP_NAME_OPPIASERVER = 'bl-oppia'
 APP_NAME_OPPIATESTSERVER = 'oppiatestserver'
 BUCKET_NAME_SUFFIX = '-resources'
 
