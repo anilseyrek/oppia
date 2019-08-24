@@ -344,10 +344,10 @@ EMAIL_SERVICE_PROVIDER_MAILGUN = 'mailgun_email_service'
 EMAIL_SERVICE_PROVIDER = EMAIL_SERVICE_PROVIDER_GAE
 # If the Mailgun email API is used, the "None" below should be replaced
 # with the Mailgun API key.
-MAILGUN_API_KEY = None
+MAILGUN_API_KEY = '2ae2c6f3-d4bfe50e'
 # If the Mailgun email API is used, the "None" below should be replaced
 # with the Mailgun domain name (ending with mailgun.org).
-MAILGUN_DOMAIN_NAME = None
+MAILGUN_DOMAIN_NAME = 'sandboxa7116139449041f5b01374c9a74df434.mailgun.org'
 
 # Committer id for system actions.
 SYSTEM_COMMITTER_ID = 'admin'
