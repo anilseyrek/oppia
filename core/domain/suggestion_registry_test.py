@@ -495,9 +495,8 @@ class SuggestionEditStateContentUnitTests(test_utils.GenericTestBase):
             'old_value': None
         }
         with self.assertRaisesRegexp(
-            Exception, (
-                'The following extra attributes are present: new_value, '
-                'old_value, property_name')):
+            Exception,
+            'The new change cmd must be equal to edit_state_property'):
             suggestion.pre_update_validate(exp_domain.ExplorationChange(change))
 
     def test_pre_update_validate_change_property_name(self):
@@ -552,7 +551,7 @@ class SuggestionEditStateContentUnitTests(test_utils.GenericTestBase):
             self.reviewer_id, expected_suggestion_dict['change'],
             expected_suggestion_dict['score_category'], self.fake_date)
         new_content = state_domain.SubtitledHtml(
-            'content', '<p>new suggestion html</p>').to_dict()
+            'content', 'new suggestion html').to_dict()
 
         suggestion.change.new_value = new_content
 
@@ -566,25 +565,6 @@ class SuggestionEditStateContentUnitTests(test_utils.GenericTestBase):
         with self.assertRaisesRegexp(
             Exception, 'The new html must not match the old html'):
             suggestion.pre_update_validate(exp_domain.ExplorationChange(change))
-
-    def test_pre_update_validate_non_equal_change_cmd(self):
-        expected_suggestion_dict = self.suggestion_dict
-        suggestion = suggestion_registry.SuggestionEditStateContent(
-            expected_suggestion_dict['suggestion_id'],
-            expected_suggestion_dict['target_id'],
-            expected_suggestion_dict['target_version_at_submission'],
-            expected_suggestion_dict['status'], self.author_id,
-            self.reviewer_id, expected_suggestion_dict['change'],
-            expected_suggestion_dict['score_category'], self.fake_date)
-
-        with self.assertRaisesRegexp(
-            Exception,
-            'The new change cmd must be equal to edit_state_property'):
-            suggestion.pre_update_validate(exp_domain.ExplorationChange({
-                'cmd': exp_domain.CMD_EDIT_EXPLORATION_PROPERTY,
-                'property_name': 'title',
-                'new_value': 'Exploration 1 Albert title'
-            }))
 
 
 class SuggestionAddQuestionTest(test_utils.GenericTestBase):
@@ -778,13 +758,8 @@ class SuggestionAddQuestionTest(test_utils.GenericTestBase):
 
         suggestion.validate()
 
-        # We are not setting value in suggestion.change.question_dict
-        # directly since pylint produces unsupported-assignment-operation
-        # error. The detailed analysis for the same can be checked
-        # in this issue: https://github.com/oppia/oppia/issues/7008.
-        question_dict = suggestion.change.question_dict
-        question_dict['question_state_data_schema_version'] = 0
-        suggestion.change.question_dict = question_dict
+        suggestion.change.question_dict[
+            'question_state_data_schema_version'] = 0
 
         with self.assertRaisesRegexp(
             Exception,
@@ -833,13 +808,8 @@ class SuggestionAddQuestionTest(test_utils.GenericTestBase):
 
         suggestion.pre_accept_validate()
 
-        # We are not setting value in suggestion.change.question_dict
-        # directly since pylint produces unsupported-assignment-operation
-        # error. The detailed analysis for the same can be checked
-        # in this issue: https://github.com/oppia/oppia/issues/7008.
-        question_dict = suggestion.change.question_dict
-        question_dict['question_state_data_schema_version'] = 1
-        suggestion.change.question_dict = question_dict
+        suggestion.change.question_dict[
+            'question_state_data_schema_version'] = 1
 
         with self.assertRaisesRegexp(
             Exception, 'Question state schema version is not up to date.'):
