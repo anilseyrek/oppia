@@ -212,6 +212,7 @@ angular.module('oppia').factory('AssetsBackendApiService', [
           entity_type: entityType,
           filename: filename
         });
+        console.log(entityId + " " + entityType + " " + filename);
     };
 
     var _getAudioUploadUrl = function(explorationId) {
