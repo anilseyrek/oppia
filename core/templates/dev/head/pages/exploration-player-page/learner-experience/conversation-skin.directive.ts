@@ -562,9 +562,10 @@ angular.module('oppia').directive('conversationSkin', [
 
           var _recordLeaveForRefresherExp = function(refresherExpId) {
             if (!_editorPreviewMode) {
-              StatsReportingService.recordLeaveForRefresherExp(
-                PlayerPositionService.getCurrentStateName(),
-                refresherExpId);
+              // When StatsReportingService is working, uncomment below
+              // StatsReportingService.recordLeaveForRefresherExp(
+              //  PlayerPositionService.getCurrentStateName(),
+              //  refresherExpId);
             }
           };
 
@@ -765,8 +766,9 @@ angular.module('oppia').directive('conversationSkin', [
             // of the exploration.
             if (
               !_editorPreviewMode && $scope.nextCard.isTerminal()) {
-              StatsReportingService.recordExplorationCompleted(
-                newStateName, LearnerParamsService.getAllParams());
+              // When StatsReportingService is working, uncomment below
+              // StatsReportingService.recordExplorationCompleted(
+              //  newStateName, LearnerParamsService.getAllParams());
 
               // If the user is a guest, has completed this exploration within
               // the context of a collection, and the collection is whitelisted,
@@ -819,8 +821,9 @@ angular.module('oppia').directive('conversationSkin', [
               // terminal state and explorationActuallyStarted is false, record
               // exploration actual start event.
               if (!explorationActuallyStarted) {
-                StatsReportingService.recordExplorationActuallyStarted(
-                  newStateName);
+                // When StatsReportingService is working, uncomment below
+                // StatsReportingService.recordExplorationActuallyStarted(
+                //  newStateName);
                 explorationActuallyStarted = true;
               }
             }
@@ -866,19 +869,22 @@ angular.module('oppia').directive('conversationSkin', [
                   var oldStateName =
                     PlayerPositionService.getCurrentStateName();
                   if (!remainOnCurrentCard) {
-                    StatsReportingService.recordStateTransition(
-                      oldStateName, nextCard.getStateName(), answer,
-                      LearnerParamsService.getAllParams(), isFirstHit);
+                    // When StatsReportingService is working, uncomment below
+                    // StatsReportingService.recordStateTransition(
+                    //  oldStateName, nextCard.getStateName(), answer,
+                    //  LearnerParamsService.getAllParams(), isFirstHit);
 
-                    StatsReportingService.recordStateCompleted(oldStateName);
+                    // StatsReportingService.recordStateCompleted(oldStateName);
                   }
                   if (nextCard.isTerminal()) {
-                    StatsReportingService.recordStateCompleted(
-                      nextCard.getStateName());
+                    // When StatsReportingService is working, uncomment below
+                    // StatsReportingService.recordStateCompleted(
+                    //  nextCard.getStateName());
                   }
                   if (wasOldStateInitial && !explorationActuallyStarted) {
-                    StatsReportingService.recordExplorationActuallyStarted(
-                      oldStateName);
+                    // When StatsReportingService is working, uncomment below
+                    // StatsReportingService.recordExplorationActuallyStarted(
+                    //  oldStateName);
                     explorationActuallyStarted = true;
                   }
                 }
@@ -1168,9 +1174,10 @@ angular.module('oppia').directive('conversationSkin', [
             }
             if (hasInteractedAtLeastOnce && !$scope.isInPreviewMode &&
                 !$scope.displayedCard.isTerminal()) {
-              StatsReportingService.recordMaybeLeaveEvent(
-                PlayerTranscriptService.getLastStateName(),
-                LearnerParamsService.getAllParams());
+              // When StatsReportingService is working, uncomment below
+              // StatsReportingService.recordMaybeLeaveEvent(
+              //  PlayerTranscriptService.getLastStateName(),
+              //  LearnerParamsService.getAllParams());
               var confirmationMessage = (
                 'If you navigate away from this page, your progress on the ' +
                 'exploration will be lost.');

@@ -79,9 +79,9 @@ angular.module('oppia').factory('ExplorationPlayerStateService', [
     var initializeExplorationServices = function(
         returnDict, arePretestsAvailable, callback) {
       StateClassifierMappingService.init(returnDict.state_classifier_mapping);
-      StatsReportingService.initSession(
-        explorationId, returnDict.exploration.title, version,
-        returnDict.session_id, UrlService.getCollectionIdFromExplorationUrl());
+      // StatsReportingService.initSession(
+      //  explorationId, returnDict.exploration.title, version,
+      //  returnDict.session_id, UrlService.getCollectionIdFromExplorationUrl());
       PlaythroughService.initSession(
         explorationId, version, returnDict.record_playthrough_probability);
       PlaythroughIssuesService.initSession(explorationId, version);

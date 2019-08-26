@@ -186,8 +186,9 @@ angular.module('oppia').factory('ExplorationEngineService', [
       }
 
       if (!_editorPreviewMode) {
-        StatsReportingService.recordExplorationStarted(
-          exploration.initStateName, newParams);
+        // When StatsReportingService is working, uncomment below
+        // StatsReportingService.recordExplorationStarted(
+        //  exploration.initStateName, newParams);
       }
 
       var initialCard =
@@ -343,18 +344,19 @@ angular.module('oppia').factory('ExplorationEngineService', [
             AnswerClassificationService.isClassifiedExplicitlyOrGoesToNewState(
               oldStateName, oldState, answer,
               interactionRulesService));
-          StatsReportingService.recordAnswerSubmitted(
-            oldStateName,
-            LearnerParamsService.getAllParams(),
-            answer,
-            classificationResult.answerGroupIndex,
-            classificationResult.ruleIndex,
-            classificationResult.classificationCategorization,
-            feedbackIsUseful);
+          // When StatsReportingService is working, uncomment below
+          // StatsReportingService.recordAnswerSubmitted(
+          //  oldStateName,
+          //  LearnerParamsService.getAllParams(),
+          //  answer,
+          //  classificationResult.answerGroupIndex,
+          //  classificationResult.ruleIndex,
+          //  classificationResult.classificationCategorization,
+          //  feedbackIsUseful);
 
-          StatsReportingService.recordAnswerSubmitAction(
-            oldStateName, newStateName, oldState.interaction.id, answer,
-            outcome.feedback);
+          // StatsReportingService.recordAnswerSubmitAction(
+          //  oldStateName, newStateName, oldState.interaction.id, answer,
+          //  outcome.feedback);
         }
 
         var refresherExplorationId = outcome.refresherExplorationId;
